@@ -1,5 +1,7 @@
 # Stock price prediction based on the Transformer Structure
 
+This repository contains a task utilizing the pretrained transformer architecture for stock price prediction. Our project intends to use the BERT model, commonly used in Natural Language Processing (NLP), for prediction purposes. BERT's internal Transformer architecture can effectively analyze time series tasks such as stock price prediction. 
+
 # Requirements and Installation
 To run my code, you'll need the following libraries.
 
