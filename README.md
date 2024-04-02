@@ -1,4 +1,4 @@
-# Capstone
+# Stock price prediction based on the Transformer Structure
 
 
 You need the following API
