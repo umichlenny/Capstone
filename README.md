@@ -10,7 +10,7 @@ qsd
 # Requirements and Installation
 To run my code, you'll need the following libraries.
 
-[torch][https://pytorch.org/]
+[torch](https://pytorch.org/)
 transformers
 pandas
 yifinance
