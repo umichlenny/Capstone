@@ -7,7 +7,7 @@ This repository contains a task utilizing the pretrained transformer architectur
 
 Here, please make sure you have installed the yfinance and pandas libraries. Once you have selected the start date, end date, and ticker, running the above code will download the data for analysis.
 
-```
+```python
 import yfinance as yf
 import pandas as pd
 tickers = pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')[0]
