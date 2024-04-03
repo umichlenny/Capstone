@@ -39,9 +39,14 @@ To run my code, you'll need the following libraries.
 
 ## Choose pre-trained Mode
 
-We choose best-base-uncased as our base. However, we can adjust some underlying architectures, such as
+We choose best-base-uncased as our base. However, we can adjust some underlying architectures by adjusting settings, such as
+
+- num_layers
+- hidden_size
+- dropout
+
 ```python
-num_layers = 5,
-hidden_size = 256,
-dropout = 0.7):
+num_layers = 5
+hidden_size = 256
+dropout = 0.7
 ```
