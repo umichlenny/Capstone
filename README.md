@@ -34,3 +34,14 @@ To run my code, you'll need the following libraries.
 - [numpy](https://numpy.org/)<br>
 - [pandas](https://pandas.pydata.org/)<br>
 - [matplotlib](https://matplotlib.org/)<br>
+
+# Get Started
+
+## Choose pre-trained Mode
+
+We choose best-base-uncased as our base. However, we can adjust some underlying architectures, such as
+```python
+num_layers = 5,
+hidden_size = 256,
+dropout = 0.7):
+```
