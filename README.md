@@ -20,10 +20,6 @@ df = df.stack().reset_index(level=1)
 df = df[df['Ticker'] == ticker]
 ```
 
-
-
-
-
 # Requirements and Installation
 To run my code, you'll need the following libraries.
 
@@ -89,4 +85,29 @@ class StockPriceDataset(Dataset):
             'attention_mask': inputs['attention_mask'].squeeze(0),
             'labels': torch.tensor(item['Adj Close'], dtype=torch.float32)
         }
+```
+
+
+We can adjust the following settings to achieve different training processes.
+-TRAINING_RATIO
+- NUM_EPOCHS
+- 
+```python
+TOKENIZER = BertTokenizer.from_pretrained('bert-base-uncased')
+MODEL = StockPricePredictionModel(input_size=768, output_size=1)
+SORTED_DATAA = data.sort_values(by='Date')
+TRAINING_RATIO = 0.6
+TRAINING_SIZE = int(TRAINING_RATIO * len(SORTED_DATAA))
+TRAINING_INDICES = np.arange(TRAINING_SIZE)
+TESTING_INDICES = np.arange(TRAINING_SIZE, len(SORTED_DATAA))
+TRAINING_DATA = SORTED_DATAA.iloc[TRAINING_INDICES]
+TESTING_DATA = SORTED_DATAA.iloc[TESTING_INDICES]
+DATASSET = StockPriceDataset(TRAINING_DATA, TOKENIZER)
+DATALOADER = DataLoader(DATASSET, batch_size=16, shuffle=True)
+OPTIMIZER = torch.optim.Adam(MODEL.parameters(), lr=1e-4)
+CRITERION = nn.MSELoss()
+TRAIN_LOSS = []
+BEST_MODEL_STATE_DICT = None
+BEST_LOSS = float('inf')
+NUM_EPOCHS = 10
 ```
