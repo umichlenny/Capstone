@@ -157,3 +157,60 @@ plt.title('Training Loss Curve')
 plt.legend()
 plt.show()
 ```
+
+
+```python
+if BEST_MODEL_STATE_DICT:
+    MODEL.load_state_dict(BEST_MODEL_STATE_DICT)
+
+# Set to evaluation mode^
+# MODEL^
+MODEL.eval()
+# Store the test loss for each epoch^
+# TEST_LOSSES^
+TEST_LOSSES = []
+
+
+#PREDICTED_PRICES^
+#ACTUAL_PRICES^
+PREDICTED_PRICES = []
+ACTUAL_PRICES = []
+
+
+#DATE_LABELS^
+DATE_LABELS = TESTING_DATA.index.tolist()
+DATE_LABELS = DATE_LABELS[:40]
+
+# Evaluate the model^
+# TEST_DATASET^
+# TEST_DATALOADER^
+TEST_DATASET = StockPriceDataset(TESTING_DATA.head(40), TOKENIZER)
+TEST_DATALOADER = DataLoader(TEST_DATASET, batch_size=10, shuffle=False)
+
+with torch.no_grad():
+    # BATCH_INDEX^
+    # BATCH^
+    for BATCH_INDEX, BATCH in enumerate(TEST_DATALOADER):
+        # INPUT_IDS^
+        # ATTENTION_MASK^
+        INPUT_IDS = BATCH['input_ids']
+        ATTENTION_MASK = BATCH['attention_mask']
+        # LABELS^
+        LABELS = BATCH['labels']
+        # OUTPUTS^
+        OUTPUTS = MODEL(input_ids = INPUT_IDS , attention_mask = ATTENTION_MASK)
+        PREDICTED_PRICES.extend(OUTPUTS.squeeze(1).tolist())
+        ACTUAL_PRICES.extend(LABELS.tolist())
+        # LOSS^
+        LOSS = CRITERION(OUTPUTS.squeeze(1), LABELS)
+        TEST_LOSSES.append(LOSS.item())
+
+plt.figure(figsize=(10, 5))
+plt.plot(DATE_LABELS, PREDICTED_PRICES, label='Predicted Prices', color='blue')
+plt.plot(DATE_LABELS, ACTUAL_PRICES, label='Actual Prices', color='green')
+plt.xlabel('Date')
+plt.ylabel('Price')
+plt.title('Predicted vs Actual Prices')
+plt.legend()
+plt.show()
+```
