@@ -61,6 +61,7 @@ class StockPricePredictionModel(nn.Module):
         return self.fc(pooled_output)
 ```
 
+The following input features are selected for analysis.
 
 ```python
 class StockPriceDataset(Dataset):
