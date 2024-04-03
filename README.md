@@ -157,33 +157,21 @@ plt.title('Training Loss Curve')
 plt.legend()
 plt.show()
 ```
-
+### Model Evaluation
 
 ```python
 if BEST_MODEL_STATE_DICT:
     MODEL.load_state_dict(BEST_MODEL_STATE_DICT)
 
-# Set to evaluation mode^
-# MODEL^
 MODEL.eval()
-# Store the test loss for each epoch^
-# TEST_LOSSES^
 TEST_LOSSES = []
 
-
-#PREDICTED_PRICES^
-#ACTUAL_PRICES^
 PREDICTED_PRICES = []
 ACTUAL_PRICES = []
 
-
-#DATE_LABELS^
 DATE_LABELS = TESTING_DATA.index.tolist()
 DATE_LABELS = DATE_LABELS[:40]
 
-# Evaluate the model^
-# TEST_DATASET^
-# TEST_DATALOADER^
 TEST_DATASET = StockPriceDataset(TESTING_DATA.head(40), TOKENIZER)
 TEST_DATALOADER = DataLoader(TEST_DATASET, batch_size=10, shuffle=False)
 
