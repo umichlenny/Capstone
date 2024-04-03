@@ -1,1 +1,8 @@
-hi
+torch
+transformers
+pandas
+numpy
+yfinance
+numpy
+pandas
+matplotlib
