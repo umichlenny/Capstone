@@ -114,6 +114,8 @@ BEST_LOSS = float('inf')
 NUM_EPOCHS = 10
 ```
 
+## Calculate the loss
+Calculate AVERAGE_LOSS; if AVERAGE_LOSS is lower than BEST_LOSS, save the best Model run of this epoch
 ```python
 for EPOCH in range(NUM_EPOCHS):
     TOTAL_LOSS = 0.0
