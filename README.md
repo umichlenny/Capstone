@@ -15,7 +15,7 @@ To run my code, you'll need the following libraries.
 
 # Get Started
 
-# Downloading Dataset
+## Downloading Dataset
 
 Here, please make sure you have installed the yfinance and pandas libraries and then wcan download data from different time points for analysis by adjusting the following settings."
 
