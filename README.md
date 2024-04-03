@@ -145,9 +145,7 @@ for EPOCH in range(NUM_EPOCHS):
 
 
 ### Plot the loss during the training process
-
-
-![CleanShot 2024-04-03 at 09 29 56@2x](https://github.com/umichlenny/Capstone/assets/149079836/2ebcf135-6ab9-44e8-b32b-7e9782ae44a7)
+![CleanShot 2024-04-03 at 10 41 49@2x](https://github.com/umichlenny/Capstone/assets/149079836/7ad82e0d-b859-428f-89fc-e04fcf4ad59b)
 
 ```python
 plt.plot(TRAIN_LOSS, label='Training Loss')
@@ -158,7 +156,9 @@ plt.legend()
 plt.show()
 ```
 ### Model Evaluation
+Using the optimal model to compare estimated prices with actual prices.
 
+![CleanShot 2024-04-03 at 10 42 02@2x](https://github.com/umichlenny/Capstone/assets/149079836/83393bfc-8bfa-4a17-bf41-716bda1d8af2)
 ```python
 if BEST_MODEL_STATE_DICT:
     MODEL.load_state_dict(BEST_MODEL_STATE_DICT)
