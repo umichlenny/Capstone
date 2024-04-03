@@ -2,7 +2,7 @@
 
 This repository contains a task utilizing the pretrained transformer architecture for stock price prediction. Our project intends to use the BERT model, commonly used in Natural Language Processing (NLP), for prediction purposes. BERT's internal Transformer architecture can effectively analyze time series tasks such as stock price prediction. 
 
-# Requirements and Installation
+## Requirements and Installation
 To run my code, you'll need the following libraries.
 
 - [torch](https://pytorch.org/)<br>
@@ -13,9 +13,9 @@ To run my code, you'll need the following libraries.
 - [pandas](https://pandas.pydata.org/)<br>
 - [matplotlib](https://matplotlib.org/)<br>
 
-# Get Started
+## Get Started
 
-## Downloading Dataset
+### Downloading Dataset
 
 Here, please make sure you have installed the yfinance and pandas libraries and then wcan download data from different time points for analysis by adjusting the following settings."
 
@@ -36,7 +36,7 @@ df = df.stack().reset_index(level=1)
 df = df[df['Ticker'] == ticker]
 ```
 
-## Choose pre-trained Mode
+### Choose pre-trained Mode
 
 We choose best-base-uncased as our base. However, we can adjust some underlying architectures by adjusting settings, such as
 
@@ -58,7 +58,7 @@ class StockPricePredictionModel(nn.Module):
         return self.fc(pooled_output)
 ```
 
-## Feature selection
+### Feature selection
 
 The following input features are selected for analysis.
 - Adj Close
@@ -89,7 +89,7 @@ class StockPriceDataset(Dataset):
         }
 ```
 
-## Adjust training settings
+### Adjust training settings
 We can adjust the following settings to achieve different training processes.
 - TRAINING_RATIO
 - NUM_EPOCHS
@@ -114,7 +114,7 @@ BEST_LOSS = float('inf')
 NUM_EPOCHS = 10
 ```
 
-## Calculate the loss
+### Calculate the loss
 Calculate AVERAGE_LOSS; if AVERAGE_LOSS is lower than BEST_LOSS, save the best Model run of this epoch
 ```python
 for EPOCH in range(NUM_EPOCHS):
@@ -144,7 +144,7 @@ for EPOCH in range(NUM_EPOCHS):
 ```
 
 
-## Plot the loss during the training process
+### Plot the loss during the training process
 
 
 ![CleanShot 2024-04-03 at 09 29 56@2x](https://github.com/umichlenny/Capstone/assets/149079836/2ebcf135-6ab9-44e8-b32b-7e9782ae44a7)
