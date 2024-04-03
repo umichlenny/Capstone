@@ -93,6 +93,7 @@ class StockPriceDataset(Dataset):
 We can adjust the following settings to achieve different training processes.
 - TRAINING_RATIO
 - NUM_EPOCHS
+
 ```python
 TOKENIZER = BertTokenizer.from_pretrained('bert-base-uncased')
 MODEL = StockPricePredictionModel(input_size=768, output_size=1)
@@ -111,4 +112,31 @@ TRAIN_LOSS = []
 BEST_MODEL_STATE_DICT = None
 BEST_LOSS = float('inf')
 NUM_EPOCHS = 10
+```
+
+```python
+for EPOCH in range(NUM_EPOCHS):
+    TOTAL_LOSS = 0.0
+    print(f"Epoch {EPOCH+1}/{NUM_EPOCHS}")
+    for BATCH_INDEX, BATCH in enumerate(DATALOADER):
+        input_ids = BATCH['input_ids']
+        attention_mask = BATCH['attention_mask']
+        labels = BATCH['labels']
+        
+        OPTIMIZER.zero_grad()
+        outputs = MODEL(input_ids = input_ids, attention_mask = attention_mask)
+        LOSS = CRITERION(outputs.squeeze(1), labels)
+        LOSS.backward()
+        OPTIMIZER.step()
+
+        TOTAL_LOSS += LOSS.item()
+    
+    AVERAGE_LOSS = TOTAL_LOSS / len(DATALOADER)
+
+    if AVERAGE_LOSS < BEST_LOSS:
+        BEST_LOSS = AVERAGE_LOSS
+        BEST_MODEL_STATE_DICT = MODEL.state_dict()
+
+    TRAIN_LOSS.append(AVERAGE_LOSS)
+    print(f"Average Loss: {AVERAGE_LOSS:.4f}")
 ```
