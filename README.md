@@ -2,10 +2,26 @@
 
 This repository contains a task utilizing the pretrained transformer architecture for stock price prediction. Our project intends to use the BERT model, commonly used in Natural Language Processing (NLP), for prediction purposes. BERT's internal Transformer architecture can effectively analyze time series tasks such as stock price prediction. 
 
+# Requirements and Installation
+To run my code, you'll need the following libraries.
+
+- [torch](https://pytorch.org/)<br>
+- [transformers](https://huggingface.co/docs/transformers/index)<br>
+- [pandas](https://pandas.pydata.org/)<br>
+- [yifinance](https://pypi.org/project/yfinance/)<br>
+- [numpy](https://numpy.org/)<br>
+- [pandas](https://pandas.pydata.org/)<br>
+- [matplotlib](https://matplotlib.org/)<br>
+
+# Get Started
 
 # Downloading Dataset
 
-Here, please make sure you have installed the yfinance and pandas libraries. Once you have selected the start date, end date, and ticker, running the above code will download the data for analysis.
+Here, please make sure you have installed the yfinance and pandas libraries and then wcan download data from different time points for analysis by adjusting the following settings."
+
+- start date
+- end date
+- ticker
 
 ```python
 import yfinance as yf
@@ -20,19 +36,6 @@ df = df.stack().reset_index(level=1)
 df = df[df['Ticker'] == ticker]
 ```
 
-# Requirements and Installation
-To run my code, you'll need the following libraries.
-
-- [torch](https://pytorch.org/)<br>
-- [transformers](https://huggingface.co/docs/transformers/index)<br>
-- [pandas](https://pandas.pydata.org/)<br>
-- [yifinance](https://pypi.org/project/yfinance/)<br>
-- [numpy](https://numpy.org/)<br>
-- [pandas](https://pandas.pydata.org/)<br>
-- [matplotlib](https://matplotlib.org/)<br>
-
-# Get Started
-
 ## Choose pre-trained Mode
 
 We choose best-base-uncased as our base. However, we can adjust some underlying architectures by adjusting settings, such as
@@ -44,8 +47,6 @@ We choose best-base-uncased as our base. However, we can adjust some underlying 
 ```python
 class StockPricePredictionModel(nn.Module):
     #num_layers =3^
-    #hidden_size=128^
-    #dropout=0.5^
     def __init__(self, input_size, output_size, num_layers = 5, hidden_size = 256, dropout = 0.7):
         super(StockPricePredictionModel, self).__init__()
         self.bert = BertModel.from_pretrained('bert-base-uncased')
@@ -57,8 +58,9 @@ class StockPricePredictionModel(nn.Module):
         return self.fc(pooled_output)
 ```
 
-The following input features are selected for analysis.
+## Feature selection
 
+The following input features are selected for analysis.
 - Adj Close
 - Volume
 - Close
@@ -87,11 +89,10 @@ class StockPriceDataset(Dataset):
         }
 ```
 
-
+## Adjust training settings
 We can adjust the following settings to achieve different training processes.
--TRAINING_RATIO
+- TRAINING_RATIO
 - NUM_EPOCHS
-- 
 ```python
 TOKENIZER = BertTokenizer.from_pretrained('bert-base-uncased')
 MODEL = StockPricePredictionModel(input_size=768, output_size=1)
