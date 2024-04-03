@@ -147,6 +147,7 @@ for EPOCH in range(NUM_EPOCHS):
 ## Plot the loss during the training process
 
 
+![CleanShot 2024-04-03 at 09 29 56@2x](https://github.com/umichlenny/Capstone/assets/149079836/2ebcf135-6ab9-44e8-b32b-7e9782ae44a7)
 
 ```python
 plt.plot(TRAIN_LOSS, label='Training Loss')
