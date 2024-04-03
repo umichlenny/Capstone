@@ -46,7 +46,17 @@ We choose best-base-uncased as our base. However, we can adjust some underlying 
 - dropout
 
 ```python
-num_layers = 5
-hidden_size = 256
-dropout = 0.7
+class StockPricePredictionModel(nn.Module):
+    #num_layers =3^
+    #hidden_size=128^
+    #dropout=0.5^
+    def __init__(self, input_size, output_size, num_layers = 5, hidden_size = 256, dropout = 0.7):
+        super(StockPricePredictionModel, self).__init__()
+        self.bert = BertModel.from_pretrained('bert-base-uncased')
+        self.fc = nn.Linear(input_size, output_size)
+    
+    def forward(self, input_ids, attention_mask):
+        outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask)
+        pooled_output = outputs.pooler_output
+        return self.fc(pooled_output)
 ```
