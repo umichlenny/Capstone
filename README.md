@@ -60,3 +60,25 @@ class StockPricePredictionModel(nn.Module):
         pooled_output = outputs.pooler_output
         return self.fc(pooled_output)
 ```
+
+
+```python
+class StockPriceDataset(Dataset):
+    def __init__(self, data, tokenizer, max_length=512):
+        self.data = data
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+    
+    def __len__(self):
+        return len(self.data)
+    
+    def __getitem__(self, idx):
+        item = self.data.iloc[idx]
+        text = f"{item['Adj Close']} {item['Volume']} {item['Close']} {item['High']} {item['Low']} {item['Open']}"
+        inputs = self.tokenizer(text, max_length=self.max_length, truncation=True, padding='max_length', return_tensors='pt')
+        return {
+            'input_ids': inputs['input_ids'].squeeze(0),
+            'attention_mask': inputs['attention_mask'].squeeze(0),
+            'labels': torch.tensor(item['Adj Close'], dtype=torch.float32)
+        }
+```
