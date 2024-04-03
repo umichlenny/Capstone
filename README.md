@@ -63,6 +63,13 @@ class StockPricePredictionModel(nn.Module):
 
 The following input features are selected for analysis.
 
+- Adj Close
+- Volume
+- Close
+- High
+- Low
+- Open
+
 ```python
 class StockPriceDataset(Dataset):
     def __init__(self, data, tokenizer, max_length=512):
