@@ -142,3 +142,17 @@ for EPOCH in range(NUM_EPOCHS):
     TRAIN_LOSS.append(AVERAGE_LOSS)
     print(f"Average Loss: {AVERAGE_LOSS:.4f}")
 ```
+
+
+## Plot the loss during the training process
+
+
+
+```python
+plt.plot(TRAIN_LOSS, label='Training Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.title('Training Loss Curve')
+plt.legend()
+plt.show()
+```
