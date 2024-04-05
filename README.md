@@ -145,7 +145,10 @@ for EPOCH in range(NUM_EPOCHS):
 
 
 ### Plot the loss during the training process
-![CleanShot 2024-04-03 at 10 41 49@2x](https://github.com/umichlenny/Capstone/assets/149079836/7ad82e0d-b859-428f-89fc-e04fcf4ad59b)
+![CleanShot 2024-04-05 at 22 23 28@2x](https://github.com/umichlenny/Capstone/assets/149079836/d3b22ccd-56fe-4671-a246-5714c6d18c06)
+
+
+
 
 ```python
 plt.plot(TRAIN_LOSS, label='Training Loss')
@@ -157,8 +160,9 @@ plt.show()
 ```
 ### Model Evaluation
 Using the optimal model to compare estimated prices with actual prices.
+![CleanShot 2024-04-05 at 22 23 38@2x](https://github.com/umichlenny/Capstone/assets/149079836/e51ddee0-7e2e-430d-9061-e108b6110646)
 
-![CleanShot 2024-04-03 at 10 42 02@2x](https://github.com/umichlenny/Capstone/assets/149079836/83393bfc-8bfa-4a17-bf41-716bda1d8af2)
+
 ```python
 if BEST_MODEL_STATE_DICT:
     MODEL.load_state_dict(BEST_MODEL_STATE_DICT)
@@ -202,3 +206,20 @@ plt.title('Predicted vs Actual Prices')
 plt.legend()
 plt.show()
 ```
+
+
+
+```python
+RESIDUALS = np.array(ACTUAL_PRICES) - np.array(PREDICTED_PRICES)
+plt.figure(figsize = (10, 6))
+plt.scatter(ACTUAL_PRICES, RESIDUALS, color='blue', alpha=0.5)
+plt.axhline(y=0, color= 'red', linestyle='--')
+plt.xlabel('Actual Values')
+plt.ylabel('Residuals')
+plt.title('Residuals vs Actual Values')
+plt.grid(True)
+plt.show()
+```
+
+![CleanShot 2024-04-05 at 22 23 45@2x](https://github.com/umichlenny/Capstone/assets/149079836/a8aade3a-446b-45cd-ac70-a8e9405b7dd5)
+
