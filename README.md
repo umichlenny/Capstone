@@ -160,9 +160,6 @@ plt.show()
 ```
 ### Model Evaluation
 Using the optimal model to compare estimated prices with actual prices.
-![CleanShot 2024-04-05 at 22 23 38@2x](https://github.com/umichlenny/Capstone/assets/149079836/e51ddee0-7e2e-430d-9061-e108b6110646)
-
-
 ```python
 if BEST_MODEL_STATE_DICT:
     MODEL.load_state_dict(BEST_MODEL_STATE_DICT)
@@ -206,9 +203,7 @@ plt.title('Predicted vs Actual Prices')
 plt.legend()
 plt.show()
 ```
-
-
-
+![CleanShot 2024-04-05 at 22 23 38@2x](https://github.com/umichlenny/Capstone/assets/149079836/e51ddee0-7e2e-430d-9061-e108b6110646)
 ```python
 RESIDUALS = np.array(ACTUAL_PRICES) - np.array(PREDICTED_PRICES)
 plt.figure(figsize = (10, 6))
@@ -220,6 +215,5 @@ plt.title('Residuals vs Actual Values')
 plt.grid(True)
 plt.show()
 ```
-
 ![CleanShot 2024-04-05 at 22 23 45@2x](https://github.com/umichlenny/Capstone/assets/149079836/a8aade3a-446b-45cd-ac70-a8e9405b7dd5)
 
