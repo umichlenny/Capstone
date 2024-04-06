@@ -30,7 +30,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 ```
 ### Downloading Dataset
-Here, please make sure you have installed the yfinance and pandas libraries and then wcan download data from different time points for analysis by adjusting the following settings."
+Here, please make sure you have installed the yfinance and pandas libraries and then we can download data from different time points for analysis by adjusting the following settings."
 
 - start date
 - end date
