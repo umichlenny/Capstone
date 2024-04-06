@@ -46,7 +46,6 @@ We choose best-base-uncased as our base. However, we can adjust some underlying 
 
 ```python
 class StockPricePredictionModel(nn.Module):
-    #num_layers =3^
     def __init__(self, input_size, output_size, num_layers = 5, hidden_size = 256, dropout = 0.7):
         super(StockPricePredictionModel, self).__init__()
         self.bert = BertModel.from_pretrained('bert-base-uncased')
@@ -215,7 +214,6 @@ plt.show()
 
 ### Model Evaluation
 R-square indicates the extent to which the model explains the variance of the target variable. A value closer to 1 signifies a better model explanation
-R-squared: 0.41825668042162156
 ```python
 from sklearn.metrics import r2_score
 import torch
@@ -228,12 +226,13 @@ with torch.no_grad():
     for BATCH in TEST_DATALOADER:
         INPUT_IDS = BATCH['input_ids']
         ATTENTION_MASK = BATCH['attention_mask']
-        LABELS = BATCH['labels'].numpy() # Actual^
+        LABELS = BATCH['labels'].numpy()
         OUTPUT = MODEL(input_ids = INPUT_IDS, attention_mask = ATTENTION_MASK)
-        PREDICTION = OUTPUT.detach().numpy().flatten() # Prediction^
+        PREDICTION = OUTPUT.detach().numpy().flatten()
         PREDICTIONS.extend(PREDICTION)
         ACTUALS.extend(LABELS)
 r2 = r2_score(ACTUALS, PREDICTIONS)
 print(f"R-squared: {r2}")
 ```
+R-squared: 0.41825668042162156
 
