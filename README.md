@@ -122,7 +122,7 @@ CRITERION = nn.MSELoss()
 TRAIN_LOSS = []
 BEST_MODEL_STATE_DICT = None
 BEST_LOSS = float('inf')
-NUM_EPOCHS = 10
+NUM_EPOCHS = 7
 ```
 
 ### Calculate the loss
