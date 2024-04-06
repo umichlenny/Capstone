@@ -15,8 +15,21 @@ To run my code, you'll need the following libraries.
 
 ## Get Started
 
+### Import requried libraries
+```python
+import torch
+import torch.optim as optim
+import torch.nn as nn
+from torch.utils.data import Dataset, DataLoader
+from transformers import BertModel, BertTokenizer
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+```
 ### Downloading Dataset
-
 Here, please make sure you have installed the yfinance and pandas libraries and then wcan download data from different time points for analysis by adjusting the following settings."
 
 - start date
@@ -24,8 +37,6 @@ Here, please make sure you have installed the yfinance and pandas libraries and 
 - ticker
 
 ```python
-import yfinance as yf
-import pandas as pd
 tickers = pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')[0]
 tickers = tickers.Symbol.tolist()
 start_date = '2005-01-01'
