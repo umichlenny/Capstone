@@ -71,6 +71,7 @@ class StockPricePredictionModel(nn.Module):
 ### Feature selection
 
 The following input features are selected for analysis.
+- Ticker
 - Adj Close
 - Volume
 - Close
@@ -90,7 +91,7 @@ class StockPriceDataset(Dataset):
     
     def __getitem__(self, idx):
         item = self.data.iloc[idx]
-        text = f"{item['Adj Close']} {item['Volume']} {item['Close']} {item['High']} {item['Low']} {item['Open']}"
+        text = f"{item['Ticker']} {item['Adj Close']} {item['Volume']} {item['Close']} {item['High']} {item['Low']} {item['Open']}"
         inputs = self.tokenizer(text, max_length=self.max_length, truncation=True, padding='max_length', return_tensors='pt')
         return {
             'input_ids': inputs['input_ids'].squeeze(0),
