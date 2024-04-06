@@ -209,15 +209,16 @@ plt.show()
 ### Model Evaluation
 Assessing whether the model has been trained successfully using residual plots, and whether data points are randomly distributed around y=0.
 ```python
-RESIDUALS = np.array(ACTUAL_PRICES) - np.array(PREDICTED_PRICES)
 plt.figure(figsize = (10, 6))
-plt.scatter(ACTUAL_PRICES, RESIDUALS, color='blue', alpha=0.5)
-plt.axhline(y=0, color= 'red', linestyle='--')
+plt.scatter(ACTUAL_PRICES, np.array(ACTUAL_PRICES) - np.array(PREDICTED_PRICES), color='green', alpha=0.7)
+plt.axhline(y=0, color= 'blue', linestyle='--')
 plt.xlabel('Actual Values')
 plt.ylabel('Residuals')
-plt.title('Residuals vs Actual Values')
+plt.title('The comparision of Residuals and Actual Values')
 plt.grid(True)
 plt.show()
 ```
-![CleanShot 2024-04-05 at 22 23 45@2x](https://github.com/umichlenny/Capstone/assets/149079836/a8aade3a-446b-45cd-ac70-a8e9405b7dd5)
+![CleanShot 2024-04-06 at 13 28 12@2x](https://github.com/umichlenny/Capstone/assets/149079836/099bbfa9-fcfe-4541-aff5-a06209a37b12)
+
+
 
