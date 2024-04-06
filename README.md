@@ -135,15 +135,12 @@ for EPOCH in range(NUM_EPOCHS):
         input_ids = BATCH['input_ids']
         attention_mask = BATCH['attention_mask']
         labels = BATCH['labels']
-        
         OPTIMIZER.zero_grad()
         outputs = MODEL(input_ids = input_ids, attention_mask = attention_mask)
         LOSS = CRITERION(outputs.squeeze(1), labels)
         LOSS.backward()
         OPTIMIZER.step()
-
         TOTAL_LOSS += LOSS.item()
-    
     AVERAGE_LOSS = TOTAL_LOSS / len(DATALOADER)
 
     if AVERAGE_LOSS < BEST_LOSS:
@@ -154,11 +151,6 @@ for EPOCH in range(NUM_EPOCHS):
     print(f"Average Loss: {AVERAGE_LOSS:.4f}")
 ```
 ### Plot the loss during the training process
-![CleanShot 2024-04-06 at 13 32 03@2x](https://github.com/umichlenny/Capstone/assets/149079836/bbf0827b-9012-41b6-afb4-e731f05e2f37)
-
-
-
-
 ```python
 plt.plot(TRAIN_LOSS, label='Training Loss')
 plt.xlabel('Epoch')
@@ -167,6 +159,7 @@ plt.title('Training Loss Curve')
 plt.legend()
 plt.show()
 ```
+![CleanShot 2024-04-06 at 13 32 03@2x](https://github.com/umichlenny/Capstone/assets/149079836/bbf0827b-9012-41b6-afb4-e731f05e2f37)
 ### Model Evaluation 
 Using the optimal model to compare estimated prices with actual prices.
 ```python
