@@ -142,10 +142,8 @@ for EPOCH in range(NUM_EPOCHS):
     TRAIN_LOSS.append(AVERAGE_LOSS)
     print(f"Average Loss: {AVERAGE_LOSS:.4f}")
 ```
-
-
 ### Plot the loss during the training process
-![CleanShot 2024-04-05 at 22 23 28@2x](https://github.com/umichlenny/Capstone/assets/149079836/d3b22ccd-56fe-4671-a246-5714c6d18c06)
+![CleanShot 2024-04-06 at 13 32 03@2x](https://github.com/umichlenny/Capstone/assets/149079836/bbf0827b-9012-41b6-afb4-e731f05e2f37)
 
 
 
@@ -171,39 +169,33 @@ PREDICTED_PRICES = []
 ACTUAL_PRICES = []
 
 DATE_LABELS = TESTING_DATA.index.tolist()
-DATE_LABELS = DATE_LABELS[:40]
+DATE_LABELS = DATE_LABELS[:50]
 
-TEST_DATASET = StockPriceDataset(TESTING_DATA.head(40), TOKENIZER)
+TEST_DATASET = StockPriceDataset(TESTING_DATA.head(50), TOKENIZER)
 TEST_DATALOADER = DataLoader(TEST_DATASET, batch_size=10, shuffle=False)
 
 with torch.no_grad():
-    # BATCH_INDEX^
-    # BATCH^
     for BATCH_INDEX, BATCH in enumerate(TEST_DATALOADER):
-        # INPUT_IDS^
-        # ATTENTION_MASK^
         INPUT_IDS = BATCH['input_ids']
         ATTENTION_MASK = BATCH['attention_mask']
-        # LABELS^
         LABELS = BATCH['labels']
-        # OUTPUTS^
         OUTPUTS = MODEL(input_ids = INPUT_IDS , attention_mask = ATTENTION_MASK)
         PREDICTED_PRICES.extend(OUTPUTS.squeeze(1).tolist())
         ACTUAL_PRICES.extend(LABELS.tolist())
-        # LOSS^
         LOSS = CRITERION(OUTPUTS.squeeze(1), LABELS)
         TEST_LOSSES.append(LOSS.item())
 
 plt.figure(figsize=(10, 5))
-plt.plot(DATE_LABELS, PREDICTED_PRICES, label='Predicted Prices', color='blue')
-plt.plot(DATE_LABELS, ACTUAL_PRICES, label='Actual Prices', color='green')
+plt.plot(DATE_LABELS, PREDICTED_PRICES, label='Predicted Prices', color='green')
+plt.plot(DATE_LABELS, ACTUAL_PRICES, label='Actual Prices', color='blue')
 plt.xlabel('Date')
 plt.ylabel('Price')
-plt.title('Predicted vs Actual Prices')
+plt.title('Predicted Price vs Actual Price')
 plt.legend()
 plt.show()
 ```
-![CleanShot 2024-04-05 at 22 23 38@2x](https://github.com/umichlenny/Capstone/assets/149079836/e51ddee0-7e2e-430d-9061-e108b6110646)
+![CleanShot 2024-04-06 at 13 30 35@2x](https://github.com/umichlenny/Capstone/assets/149079836/62e60507-6289-4b80-9718-ad2f98dede38)
+
 
 
 ### Model Evaluation
