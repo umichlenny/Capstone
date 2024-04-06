@@ -213,4 +213,27 @@ plt.show()
 ![CleanShot 2024-04-06 at 13 28 12@2x](https://github.com/umichlenny/Capstone/assets/149079836/099bbfa9-fcfe-4541-aff5-a06209a37b12)
 
 
+### Model Evaluation
+R-square indicates the extent to which the model explains the variance of the target variable. A value closer to 1 signifies a better model explanation
+R-squared: 0.41825668042162156
+```python
+from sklearn.metrics import r2_score
+import torch
+TEST_DATASET = StockPriceDataset(TESTING_DATA, TOKENIZER)
+TEST_DATALOADER = DataLoader(TEST_DATASET, batch_size=32, shuffle=False)
+MODEL.eval()
+PREDICTIONS = []
+ACTUALS = []
+with torch.no_grad():
+    for BATCH in TEST_DATALOADER:
+        INPUT_IDS = BATCH['input_ids']
+        ATTENTION_MASK = BATCH['attention_mask']
+        LABELS = BATCH['labels'].numpy() # Actual^
+        OUTPUT = MODEL(input_ids = INPUT_IDS, attention_mask = ATTENTION_MASK)
+        PREDICTION = OUTPUT.detach().numpy().flatten() # Prediction^
+        PREDICTIONS.extend(PREDICTION)
+        ACTUALS.extend(LABELS)
+r2 = r2_score(ACTUALS, PREDICTIONS)
+print(f"R-squared: {r2}")
+```
 
