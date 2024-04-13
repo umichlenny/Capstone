@@ -1,0 +1,1 @@
+I utilized yfinance library to download the stock price data for ticker 'AAPL' from Jan 1st, 2005, to Dec 31st, 2023.
